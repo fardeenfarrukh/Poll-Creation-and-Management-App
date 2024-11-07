@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Poll</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <script>
+            function addChoice() {
+                var choiceContainer = document.getElementById("choices-container");
+                var newChoiceInput = document.createElement("input");
+                newChoiceInput.type = "text";
+                newChoiceInput.name = "choices";
+                newChoiceInput.placeholder = "Choice";
+                choiceContainer.appendChild(newChoiceInput);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Create a New Poll</h1>
+        <form action="{{ url_for('create_poll') }}" method="POST">
+            <label for="question">Question:</label>
+            <input type="text" name="question" id="question" required>
+            <br>
+            <label>Choices:</label>
+            <div id="choices-container">
+                <input type="text" name="choices" required placeholder="Choice 1">
+                <input type="text" name="choices" required placeholder="Choice 2">
+            </div>
+            <button type="button" onclick="addChoice()">Add More Choices</button>
+            <br>
+            <button type="submit">Create Poll</button>
+        </form>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </body>
+    </html>

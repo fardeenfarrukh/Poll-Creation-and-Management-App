@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ poll['question'] }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>{{ poll['question'] }}</h1>
+        <form action="{{ url_for('poll', poll_id=poll['id']) }}" method="POST">
+            {% for choice in choices %}
+                <input type="radio" name="choice" value="{{ choice['id'] }}" required> {{ choice['choice_text'] }} ({{ choice['votes'] }} votes)<br>
+            {% endfor %}
+            <button type="submit">Vote</button>
+        </form>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </body>
+    </html>

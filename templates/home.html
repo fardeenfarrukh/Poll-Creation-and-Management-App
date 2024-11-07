@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Poll Creation App</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>All Polls</h1>
+        <a href="{{ url_for('create_poll') }}">Create New Poll</a>
+        <ul>
+            {% for poll in polls %}
+                <li>
+                    <a href="{{ url_for('poll', poll_id=poll['id']) }}">{{ poll['question'] }}</a>
+                    <a href="{{ url_for('delete_poll', poll_id=poll['id']) }}" style="color: red; margin-left: 10px;">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
